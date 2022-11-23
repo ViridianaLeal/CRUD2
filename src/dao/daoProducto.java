@@ -61,45 +61,33 @@ public class daoProducto {
     }
 
     public boolean deleteProducto(int id) {
-        try {
-            String sql = "DELETE FROM producto WHERE idproducto =?";
-            PreparedStatement ps = cx.conectar().prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.executeUpdate();
-            ps.close();
-            ps = null;
-            cx.desconectar();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    	PreparedStatement ps = null;
+		try {
+			ps = cx.conectar().prepareStatement("DELETE FROM producto WHERE idproducto=?");
+			ps.setInt(1,id);
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
     }
 
     public boolean editProducto(Producto x) {
-        try {
-            String sql = "UPDATE producto "
-                    + "SET  "
-                    + " descripcion= ?,"
-                    + " precio= ?,"
-                    + " cantidad= ?, "
-                    + " categoria= ?"
-                    + " WHERE idproducto= ? ";
-            PreparedStatement ps = cx.conectar().prepareStatement(sql);
-            ps.setString(1, x.getDescripcion());
-            ps.setDouble(2, x.getPrecio());
-            ps.setInt(3, x.getCantidad());
-            ps.setInt(4, x.getCategoria());
-            ps.setInt(5, x.getIdProducto());
-            ps.executeUpdate();
-            ps.close();
-            ps = null;
-            cx.desconectar();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+    	PreparedStatement ps = null;
+		try {
+			ps = cx.conectar().prepareStatement("UPDATE usuario SET user=?,password=?,nombre=? WHERE id=?");
+			ps.setString(1, x.getDescripcion());
+			ps.setDouble(2,x.getPrecio());
+			ps.setInt(3, x.getCantidad());
+			ps.setLong(4, x.getCategoria());
+			ps.setInt(5, x.getIdProducto());
+			ps.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
     }
 
    
