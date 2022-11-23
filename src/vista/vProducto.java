@@ -27,6 +27,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class vProducto extends JFrame {
 
@@ -247,6 +249,19 @@ public class vProducto extends JFrame {
 		contentPane.add(scrollpane);
 
 		tblProductos = new JTable();
+		tblProductos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				fila = tblProductos.getSelectedRow();
+				fila = tblProductos.getSelectedRow();
+				producto = lista.get(fila);
+				lblIdProducto.setText("" + lista.get(fila).getIdProducto());
+				txtDescripcion.setText(producto.getDescripcion());
+				txtPrecio.setText(""+producto.getPrecio());
+				txtCantidad.setText(""+producto.getCantidad());
+				cboCategoria.setSelectedIndex(producto.getCategoria());
+			}
+		});
 		tblProductos.setModel(new DefaultTableModel(
 				new Object[][] { { null, null, null, null, null }, { null, null, null, null, null },
 						{ null, null, null, null, null }, },

@@ -76,7 +76,7 @@ public class daoProducto {
     public boolean editProducto(Producto x) {
     	PreparedStatement ps = null;
 		try {
-			ps = cx.conectar().prepareStatement("UPDATE usuario SET user=?,password=?,nombre=? WHERE id=?");
+			ps = cx.conectar().prepareStatement("UPDATE producto SET descripcion=?,precio=?,cantidad=?,categoria=? WHERE idproducto=?");
 			ps.setString(1, x.getDescripcion());
 			ps.setDouble(2,x.getPrecio());
 			ps.setInt(3, x.getCantidad());
