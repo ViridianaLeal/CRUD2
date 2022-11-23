@@ -259,7 +259,7 @@ public class vProducto extends JFrame {
 				txtDescripcion.setText(producto.getDescripcion());
 				txtPrecio.setText(""+producto.getPrecio());
 				txtCantidad.setText(""+producto.getCantidad());
-				cboCategoria.setSelectedIndex(producto.getCategoria());
+				cboCategoria.setSelectedItem(producto.getCategoria());
 			}
 		});
 		tblProductos.setModel(new DefaultTableModel(
